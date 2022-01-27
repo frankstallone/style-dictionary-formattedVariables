@@ -5,9 +5,9 @@ const { formattedVariables } = StyleDictionary.formatHelpers;
 StyleDictionary.registerFormat({
   name: `darkValues`,
   formatter: function({dictionary, file}) {
-    console.log(dictionary.allTokens)
+    const { outputReferences } = file.options;
     return '@media (prefers-color-scheme: dark) { \n :root {\n' +
-      formattedVariables('css', dictionary, file.options.outputReferences) +
+      formattedVariables({format: 'css', dictionary, outputReferences}) +
       '\n}\n}\n';
   }
 });
