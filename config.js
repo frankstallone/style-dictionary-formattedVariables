@@ -1,5 +1,5 @@
 const StyleDictionary = require('style-dictionary');
-const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers;
+const { formattedVariables } = StyleDictionary.formatHelpers;
 
 
 StyleDictionary.registerFormat({
@@ -58,8 +58,6 @@ module.exports = {
       buildPath: './dist/',
       options: {
         outputReferences: true,
-        // Right now it's :root but we may want to change it to:
-        // selector: '.roll-theme--light',
       },
       files: [
         {
@@ -69,16 +67,7 @@ module.exports = {
         {
           destination: `variables-dark.css`,
           format: `cssDark`,
-          filter: (token) =>
-            token.darkValue &&
-            (token.attributes.category === `color` ||
-              token.attributes.item === `background` ||
-              // alias background tokens
-              (token.attributes.category === `alias` &&
-                token.attributes.type === `background`) ||
-                (token.attributes.category === `alias` &&
-                token.attributes.type === `border`)
-                ),
+          filter: (token) => token.darkValue 
         },
       ]
     }
